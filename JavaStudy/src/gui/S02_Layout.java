@@ -38,7 +38,7 @@ class BorderLayoutWithoutRegionExample {
 		JButton btn2 = new JButton("SOUTH");
 		JButton btn3 = new JButton("EAST");
 		JButton btn4 = new JButton("WEST");
-		JButton btn5 = new JButton("CENTER");
+		JButton btn5 = new JButton("CENTERdddddddddddddddddddd");
 
 		// horizontal gap is 7, and the vertical gap is 7
 		// Since region is not specified, the gaps are of no use
