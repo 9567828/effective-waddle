@@ -1,19 +1,22 @@
 package test;
 
+import java.awt.Color;
 import java.awt.Font;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseAdapter;
 
+import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 
-public class Swing {
+public class Swing extends JFrame {
 	
-	static void setframe() {
-		JFrame f = new JFrame();
+	public Swing(String title) {
+		super(title);
+		
 		JButton btn = new JButton("뒤로가기");
 		JButton sbtn = new JButton("조회하기");
 		
@@ -24,30 +27,30 @@ public class Swing {
 		
 		sdatef.setBounds(80, 60, 200, 50);
 		
-		
-		
 		sbtn.setBounds(280, 60, 80, 49);
 		
 		
-		btn.setLayout(null);
+		btn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		btn.setBounds(10, 10, 80, 40);
 		btn.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		
+		sbtn.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		sbtn.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
 		
-		f.add(btn);
-		f.add(label);
-		f.add(sbtn);
-		f.add(sdatef);
+		this.add(btn);
+		this.add(label);
+		this.add(sbtn);
+		this.add(sdatef);
 		
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setLocation(200, 200);
-		f.setLayout(null);
-		f.setSize(390, 400);
-		f.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLocation(200, 200);
+		this.setLayout(null);
+		this.setSize(390, 400);
+		this.setVisible(true);
 	}
 	
 	public static void main(String[] args) {
-		setframe();
+		new Swing("접근기록조회");
 	}
 
 }
