@@ -4,10 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -18,6 +19,8 @@ import test.model.DBTable;
 public class Table {
 	
 	static DBConnector connecter = new DBConnector("HR", "1234");
+	Date d = new Date();
+	SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 	
 	public static List<DBTable> getAccessDate(String startDate, String endDate) {
 		List<DBTable> list = new ArrayList<>();
@@ -69,11 +72,8 @@ class TableExample {
 		jt.setBounds(10, 40, 300, 300);
 		JScrollPane sp = new JScrollPane(jt);
 		jt.setRowHeight(20);
-		f.add(sp);
 		
-		JButton btn = new JButton("왜안나와");
-		f.add(btn);
-		btn.setBounds(10, 200, 80, 40);
+		f.add(sp);
 		
 		f.setLayout(null);
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

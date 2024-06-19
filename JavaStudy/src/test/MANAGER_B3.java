@@ -22,6 +22,8 @@ public class MANAGER_B3 extends JFrame {
 	final static int labelX = 80;
 	final static int labelY = 50;
 	
+	final static Font font = new Font("맑은 고딕", Font.PLAIN, 14);
+	boolean isShow = true;
 	
 	public MANAGER_B3(String title) {
 		super(title);
@@ -30,12 +32,12 @@ public class MANAGER_B3 extends JFrame {
 		this.add(back);
 		back.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		back.setBounds(10, 10, btnX, btnY);
-		back.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		back.setFont(font);
 		
 		JLabel startDate = new JLabel("시작날짜");
 		this.add(startDate);
 		startDate.setBounds(20, 60, labelX, labelY);
-		startDate.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		startDate.setFont(font);
 		
 		JTextField sdateInput = new JTextField();
 		this.add(sdateInput);
@@ -45,7 +47,7 @@ public class MANAGER_B3 extends JFrame {
 		JLabel endDate = new JLabel("종료날짜");
 		this.add(endDate);
 		endDate.setBounds(20, 150, labelX, labelY);
-		endDate.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		endDate.setFont(font);
 		
 		JLabel icon = new JLabel("▼");
 		this.add(icon);
@@ -60,7 +62,7 @@ public class MANAGER_B3 extends JFrame {
 		this.add(search);
 		search.setBounds(290, 150, btnX, 49);
 		search.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-		search.setFont(new Font("맑은 고딕", Font.PLAIN, 14));
+		search.setFont(font);
 		
 		String[] column = {"계정SEQ", "아이디", "접속일"};
 		String[][] data = new String[9][3];
