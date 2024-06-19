@@ -3,6 +3,12 @@ package test;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
@@ -12,7 +18,12 @@ import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
+import database.DBConnector;
+import test.model.DBTable;
+
 public class MANAGER_B3 extends JFrame {
+	static DBConnector connecter = new DBConnector("HR", "1234");
+	
 	final static int frameX = 400;
 	final static int frameY = 850;
 	final static int inputBoxX = 200;
@@ -24,6 +35,14 @@ public class MANAGER_B3 extends JFrame {
 	
 	final static Font font = new Font("맑은 고딕", Font.PLAIN, 14);
 	boolean isShow = true;
+	boolean isAccessLog = false;
+	
+	JTextField sdateInput, edateInput;
+	String acc_num, acc_id, acc_date;
+	JTable jt;
+	
+	String[] column = {"계정SEQ", "아이디", "접속일"};
+	String[][] data = new String[9][3];
 	
 	public MANAGER_B3(String title) {
 		super(title);
@@ -39,7 +58,7 @@ public class MANAGER_B3 extends JFrame {
 		startDate.setBounds(20, 60, labelX, labelY);
 		startDate.setFont(font);
 		
-		JTextField sdateInput = new JTextField();
+		sdateInput = new JTextField();
 		this.add(sdateInput);
 		sdateInput.setBounds(90, 60, inputBoxX, inputBoxY);
 		
@@ -54,7 +73,7 @@ public class MANAGER_B3 extends JFrame {
 		icon.setBounds(170, 100, 50, 50);
 		
 		
-		JTextField edateInput = new JTextField();
+		edateInput = new JTextField();
 		this.add(edateInput);
 		edateInput.setBounds(90, 150, inputBoxX, inputBoxY);
 		
@@ -64,10 +83,32 @@ public class MANAGER_B3 extends JFrame {
 		search.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		search.setFont(font);
 		
-		String[] column = {"계정SEQ", "아이디", "접속일"};
-		String[][] data = new String[9][3];
-		
-		JTable jt = new JTable(data, column);
+		search.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+				inputDate();
+				
+				if (!isAccessLog) {
+					System.out.println("조회데이터 없음");
+				} else {
+					for (int i = 0; i < data.length; ++i) {
+						for (int j = 0; j < data[i].length; ++i) {
+							jt.setValueAt(acc_num, 0, j);
+						}
+					}
+				}
+				
+//		        table.setValueAt("200", 1, 1);
+//		        table.setValueAt("50", 0, 1);
+//		        table1.setValueAt("하이", 0, 0);
+//		        table1.setRowHeight(20);
+				
+			}
+		});
+				
+		jt = new JTable(data, column);
 
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setBounds(18, 250, 350, 400);
@@ -80,7 +121,44 @@ public class MANAGER_B3 extends JFrame {
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setLocation(200, 200);
 		this.setSize(frameX, frameY);
-		this.setVisible(true);
+		this.setVisible(isShow);
+	}
+	
+	private void inputDate() {
+		String startDate = sdateInput.getText();
+		String endDate = edateInput.getText();
+		
+		String sql = "SELECT * FROM accessRecord "
+				+ "WHERE acc_date >= ? AND acc_date <= ? ORDER BY acc_date";
+		
+		try (
+			Connection conn = connecter.getConnection();			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+		) {
+			pstmt.setString(1, startDate);
+			pstmt.setString(2, endDate);
+			
+			try (
+				ResultSet rs = pstmt.executeQuery();
+			) {
+				while(rs.next()) {
+					acc_num = rs.getString("acc_number");
+					acc_id = rs.getString("account_id");
+					acc_date = rs.getString("acc_date");
+					System.out.println(acc_num + " " + acc_id + " " + acc_date);
+					
+//					for (int i = 0; i < data.length; ++i) {
+//						for (int j = 0; j < data[i].length; ++i) {
+//							jt.setValueAt(acc_num, 0, j);
+//						}
+//					}
+					isAccessLog = true;
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			isAccessLog = false;
+		}
 	}
 	
 	public static void main(String[] args) {
