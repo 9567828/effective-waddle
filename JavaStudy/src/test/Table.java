@@ -6,8 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -17,44 +17,43 @@ import test.model.DBTable;
 
 public class Table {
 	
-	static DBConnector connecter = new DBConnector("hr", "1234");
-	static Scanner sc = new Scanner(System.in);
+	static DBConnector connecter = new DBConnector("HR", "1234");
 	
-	public static List<DBTable> getAccessDate(int startDate) {
-		
+	public static List<DBTable> getAccessDate(String startDate, String endDate) {
 		List<DBTable> list = new ArrayList<>();
-		String sql = "SELECT * FROM accessRecord WHERE acc_number = ?";
+		String sql = "SELECT * FROM accessRecord "
+				+ "WHERE acc_date >= ? AND acc_date <= ? ORDER BY acc_date";
 		
 		try (
-			Connection conn = connecter.getConnection();
-			PreparedStatement pstmt = conn.prepareStatement(sql);	
+			Connection conn = connecter.getConnection();			
+			PreparedStatement pstmt = conn.prepareStatement(sql);
 		) {
-			pstmt.setInt(1, startDate);
-//			pstmt.setString(2, endDate);
+			pstmt.setString(1, startDate);
+			pstmt.setString(2, endDate);
 			
 			try (
 				ResultSet rs = pstmt.executeQuery();
 			) {
-				while (rs.next()) {
-					DBTable t = new DBTable(rs);
-					list.add(t);
+				while(rs.next()) {
+					DBTable db = new DBTable(rs);
+					list.add(db);
 				}
 			}
-			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		for (DBTable t : list) {
-			System.out.println(t);
+		for (DBTable db : list) {
+			System.out.println(db);
 		}
 		
 		return list;
 	}
-	
+
 	public static void main(String[] args) {
-//		new TableExample();
-		getAccessDate(1);
+		new TableExample();
+		getAccessDate("2024-01-01", "2024-03-30");
+
 	}
 }
 
@@ -67,11 +66,17 @@ class TableExample {
 		String column[] = { "ID", "계정", "접속일" };
 		
 		JTable jt = new JTable(data, column);
-		jt.setBounds(30, 40, 200, 300);
+		jt.setBounds(10, 40, 300, 300);
 		JScrollPane sp = new JScrollPane(jt);
-		
 		jt.setRowHeight(20);
 		f.add(sp);
+		
+		JButton btn = new JButton("왜안나와");
+		f.add(btn);
+		btn.setBounds(10, 200, 80, 40);
+		
+		f.setLayout(null);
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setSize(300, 400);
 		f.setVisible(true);
 	}
