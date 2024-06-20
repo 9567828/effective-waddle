@@ -21,7 +21,7 @@ import javax.swing.SwingConstants;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
 
-public class Main_A0 {
+public class Main_A0  {
 	final static boolean[] page_number = new boolean[19];
 	
 	public static JFrame getJFrame() {
@@ -54,9 +54,9 @@ public class Main_A0 {
 	}
 	
 	public static void main(String[] args) {
-		JFrame test = getJFrame();
+		 JFrame test = getJFrame();
 		
-		new DigitalWatch(test);
+		 new DigitalWatch(test);
 		
 	}
 }

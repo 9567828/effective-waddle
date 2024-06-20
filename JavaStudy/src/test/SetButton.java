@@ -11,6 +11,8 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
+import backjoon.Main;
+
 public class SetButton extends JButton {
 
 	public SetButton(String title, int x, int y) {
@@ -39,8 +41,8 @@ public class SetButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
-				
+				new MANAGER_B2();
+				new Main_A0().getJFrame().dispose();
 			}
 		});
 
