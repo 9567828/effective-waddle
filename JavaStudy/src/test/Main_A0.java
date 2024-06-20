@@ -1,6 +1,13 @@
 package test;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
+import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -10,6 +17,9 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.Border;
+import javax.swing.border.LineBorder;
 
 public class Main_A0 {
 	final static boolean[] page_number = new boolean[19];
@@ -18,21 +28,20 @@ public class Main_A0 {
 		JFrame jframe = new JFrame();
 		JLabel jlabel = new JLabel();
 		
-		
 		ImageIcon icon = new ImageIcon("imgs/ikea.png");
 		jlabel.setBounds(0, 6, 100, 38);
-		
 		jlabel.setIcon(icon);
 		
 		
 		JPanel jpanel = new JPanel();
-		
 		jpanel.setBounds(0, 0, 400, 50);
 		jpanel.setBackground(new Color(0, 88, 163));
 		
 		
+
 		jframe.add(jlabel);
 		jframe.add(jpanel);
+		jframe.add(new SetImage());
 		
 		jframe.setSize(400, 850);
 		jframe.setLayout(null);
