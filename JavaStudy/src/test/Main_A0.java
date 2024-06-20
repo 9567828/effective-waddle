@@ -42,6 +42,7 @@ public class Main_A0 {
 		jframe.add(jlabel);
 		jframe.add(jpanel);
 		jframe.add(new SetImage());
+		jframe.add(new SetButton("관리자전용", 10, 120));
 		
 		jframe.setSize(400, 850);
 		jframe.setLayout(null);
