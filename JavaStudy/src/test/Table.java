@@ -4,19 +4,40 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 
-import database.DBConnector;
-import test.model.DBTable;    
+import database.DBConnector;    
 
-public class Table {
+public class Table extends JFrame {
+	
+	static String[] column = {"계정번호", "ID", "접속일"};
+	static String[][] data =  new String[15][9];
+	static JTable jt;
+	
+	
+	public Table(String title) {
+		super(title);
+		
+		jt = new JTable(data, column);
+		JScrollPane sp = new JScrollPane(jt);
+		jt.setRowHeight(20);
+		sp.setBounds(20, 20, 350, 500);
+		
+		this.add(sp);
+		
+		
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setLayout(null);
+		this.setLocation(200, 200);
+		this.setSize(400, 600);
+		this.setVisible(true);
+	
+	}
+	
+	
 	
 	static DBConnector connecter = new DBConnector("HR", "1234");
 	
@@ -70,7 +91,14 @@ public class Table {
 					acc_num = rs.getString("acc_number");
 					acc_id = rs.getString("account_id");
 					acc_date = rs.getString("acc_date");
-					System.out.println(acc_num + acc_id + acc_date);
+					
+					for (int i = 0; i < data.length; ++i) {
+						for (int j = 0; j < data[i].length; ++j) {
+							jt.setValueAt(acc_num, 0, i);
+						}
+					}
+					
+					System.out.println(acc_num + " " + acc_id + " " + acc_date);
 				}
 			}
 		} catch (SQLException e) {
@@ -81,29 +109,8 @@ public class Table {
 
 	public static void main(String[] args) {
 //		new TableExample();
+		new Table("테이블연습");
 		getAccessDate("2024-01-01", "2024-03-30");
 
-	}
-}
-
-class TableExample {
-	JFrame f;
-
-	TableExample() {
-		f = new JFrame();
-		String data[][] = new String[9][3];
-		String column[] = { "ID", "계정", "접속일" };
-		
-		JTable jt = new JTable(data, column);
-		jt.setBounds(10, 40, 300, 300);
-		JScrollPane sp = new JScrollPane(jt);
-		jt.setRowHeight(20);
-		
-		f.add(sp);
-		
-		f.setLayout(null);
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		f.setSize(300, 400);
-		f.setVisible(true);
 	}
 }

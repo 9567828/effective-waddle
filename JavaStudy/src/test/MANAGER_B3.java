@@ -1,7 +1,7 @@
 package test;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -19,7 +20,6 @@ import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import database.DBConnector;
-import test.model.DBTable;
 
 public class MANAGER_B3 extends JFrame {
 	static DBConnector connecter = new DBConnector("HR", "1234");
@@ -111,11 +111,9 @@ public class MANAGER_B3 extends JFrame {
 		jt = new JTable(data, column);
 
 		JScrollPane sp = new JScrollPane(jt);
-		sp.setBounds(18, 250, 350, 400);
+		sp.setBounds(18, 250, 350, 300);
 		jt.setRowHeight(30);
 		this.add(sp);
-		
-
 		
 		this.setLayout(null);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
