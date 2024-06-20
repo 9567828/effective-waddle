@@ -53,6 +53,16 @@ public class MANAGER_B3 extends JFrame {
 		back.setBounds(10, 10, btnX, btnY);
 		back.setFont(font);
 		
+		back.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new MANAGER_B2();
+				setVisible(false);
+			}
+		});
+		
+		
 		JLabel startDate = new JLabel("시작날짜");
 		this.add(startDate);
 		startDate.setBounds(20, 60, labelX, labelY);

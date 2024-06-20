@@ -1,13 +1,6 @@
 package test;
 
-import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.Component;
-import java.awt.Font;
-import java.awt.Graphics;
-import java.awt.Insets;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -17,15 +10,11 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.SwingConstants;
-import javax.swing.border.Border;
-import javax.swing.border.LineBorder;
 
-public class Main_A0  {
+public class Main_A0 extends JFrame  {
 	final static boolean[] page_number = new boolean[19];
 	
-	public static JFrame getJFrame() {
-		JFrame jframe = new JFrame();
+	public Main_A0() {
 		JLabel jlabel = new JLabel();
 		
 		ImageIcon icon = new ImageIcon("imgs/ikea.png");
@@ -37,28 +26,25 @@ public class Main_A0  {
 		jpanel.setBounds(0, 0, 400, 50);
 		jpanel.setBackground(new Color(0, 88, 163));
 		
+		this.add(jlabel);
+		this.add(jpanel);
+		this.add(new SetImage());
+		this.add(new SetButton("관리자전용", 10, 120));
 		
-
-		jframe.add(jlabel);
-		jframe.add(jpanel);
-		jframe.add(new SetImage());
-		jframe.add(new SetButton("관리자전용", 10, 120));
+		this.setSize(400, 850);
+		this.setLayout(null);
 		
-		jframe.setSize(400, 850);
-		jframe.setLayout(null);
-		
-		jframe.setVisible(true);
-		jframe.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		
-		return jframe;
+		this.setVisible(true);
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
 	}
 	
 	public static void main(String[] args) {
-		 JFrame test = getJFrame();
+		 JFrame test = new Main_A0();
 		
 		 new DigitalWatch(test);
 		
 	}
+	
 }
 
 class DigitalWatch implements Runnable {
@@ -107,5 +93,4 @@ class DigitalWatch implements Runnable {
 	public void printTime() {
 		b.setText(timeString);
 	}
-	
 }

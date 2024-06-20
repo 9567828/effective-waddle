@@ -41,8 +41,9 @@ public class SetButton extends JButton {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				Main_A0 m = new Main_A0();
+				
 				new MANAGER_B2();
-				new Main_A0().getJFrame().dispose();
 			}
 		});
 
