@@ -1,5 +1,6 @@
 package test;
 
+import java.awt.CardLayout;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -11,7 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Main_A0 extends JFrame  {
+public class Main_A0 extends JFrame {
 	final static boolean[] page_number = new boolean[19];
 	
 	public Main_A0() {
@@ -26,16 +27,18 @@ public class Main_A0 extends JFrame  {
 		jpanel.setBounds(0, 0, 400, 50);
 		jpanel.setBackground(new Color(0, 88, 163));
 		
+//		this.add(new MANAGER_B3_2("접근기록조회"));
+		
 		this.add(jlabel);
 		this.add(jpanel);
 		this.add(new SetImage());
-		this.add(new SetButton("관리자전용", 10, 120));
+		this.add(new SetButton("관리자전용", "manager_icon.png", 10, 120));
 		
 		this.setSize(400, 850);
 		this.setLayout(null);
 		
 		this.setVisible(true);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);	
+		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	}
 	
 	public static void main(String[] args) {

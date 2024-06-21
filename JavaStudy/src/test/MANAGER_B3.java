@@ -57,8 +57,7 @@ public class MANAGER_B3 extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MANAGER_B2();
-				setVisible(false);
+				
 			}
 		});
 		

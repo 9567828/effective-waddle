@@ -1,7 +1,6 @@
 package test;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -11,21 +10,18 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import javax.swing.BorderFactory;
-import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 
 import database.DBConnector;
 
-public class MANAGER_B3_2 extends JFrame {
+public class MANAGER_B3_2 {
 	static DBConnector connecter = new DBConnector("HR", "1234");
 	
-	final static int frameX = 400;
-	final static int frameY = 850;
 	final static int inputBoxX = 200;
 	final static int inputBoxY = 50;
 	final static int btnX = 80;
@@ -34,21 +30,20 @@ public class MANAGER_B3_2 extends JFrame {
 	final static int labelY = 50;
 	
 	final static Font font = new Font("맑은 고딕", Font.PLAIN, 14);
-	boolean isShow = true;
-	boolean isAccessLog = false;
+	static boolean isShow = true;
+	static boolean isAccessLog = false;
 	
-	JTextField sdateInput, edateInput;
-	String acc_num, acc_id, acc_date;
-	JTable jt;
+	static JTextField sdateInput, edateInput;
+	static String acc_num, acc_id, acc_date;
+	static JTable jt;
 	
-	String[] column = {"계정SEQ", "아이디", "접속일"};
-	String[][] data = new String[9][3];
+	static String[] column = {"계정SEQ", "아이디", "접속일"};
+	static String[][] data = new String[9][3];
 	
-	public MANAGER_B3_2(String title) {
-		super(title);
+	public static JPanel getMan_B3() {
+		JPanel jp = new JPanel();
 		
 		JButton back = new JButton("뒤로가기");
-		this.add(back);
 		back.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		back.setBounds(10, 10, btnX, btnY);
 		back.setFont(font);
@@ -57,38 +52,38 @@ public class MANAGER_B3_2 extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new MANAGER_B2();
-				setVisible(false);
+				DefaultPage.cardlayout.show(DefaultPage.pages, "계정생성");
 			}
 		});
+		jp.add(back);
 		
 		
 		JLabel startDate = new JLabel("시작날짜");
-		this.add(startDate);
+		jp.add(startDate);
 		startDate.setBounds(20, 60, labelX, labelY);
 		startDate.setFont(font);
 		
 		sdateInput = new JTextField();
-		this.add(sdateInput);
+		jp.add(sdateInput);
 		sdateInput.setBounds(90, 60, inputBoxX, inputBoxY);
 		
 		
 		JLabel endDate = new JLabel("종료날짜");
-		this.add(endDate);
+		jp.add(endDate);
 		endDate.setBounds(20, 150, labelX, labelY);
 		endDate.setFont(font);
 		
 		JLabel icon = new JLabel("▼");
-		this.add(icon);
+		jp.add(icon);
 		icon.setBounds(170, 100, 50, 50);
 		
 		
 		edateInput = new JTextField();
-		this.add(edateInput);
+		jp.add(edateInput);
 		edateInput.setBounds(90, 150, inputBoxX, inputBoxY);
 		
 		JButton search = new JButton("조회하기");
-		this.add(search);
+		jp.add(search);
 		search.setBounds(290, 150, btnX, 49);
 		search.setBorder(BorderFactory.createLineBorder(Color.BLACK));
 		search.setFont(font);
@@ -123,16 +118,11 @@ public class MANAGER_B3_2 extends JFrame {
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setBounds(18, 250, 350, 300);
 		jt.setRowHeight(30);
-		this.add(sp);
 		
-		this.setLayout(null);
-		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		this.setLocation(200, 200);
-		this.setSize(frameX, frameY);
-		this.setVisible(isShow);
+		return jp;
 	}
 	
-	private void inputDate() {
+	private static void inputDate() {
 		String startDate = sdateInput.getText();
 		String endDate = edateInput.getText();
 		
@@ -167,10 +157,6 @@ public class MANAGER_B3_2 extends JFrame {
 			e.printStackTrace();
 			isAccessLog = false;
 		}
-	}
-	
-	public static void main(String[] args) {
-		new MANAGER_B3_2("접근기록조회");
 	}
 
 }

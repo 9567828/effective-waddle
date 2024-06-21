@@ -11,14 +11,15 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.LineBorder;
 
-import backjoon.Main;
-
 public class SetButton extends JButton {
+	
+	/**
+		1. 버튼명
+		2. x, y 위치값
+	*/
+	public SetButton(String title, String url, int x, int y) {
+		ImageIcon manager_icon = new ImageIcon("imgs/" + url);
 
-	public SetButton(String title, int x, int y) {
-		ImageIcon manager_icon = new ImageIcon("imgs/manager_icon.png");
-
-		// 위치값은 변수로 설정했습니다
 		this.setBounds(x, y, 375, 50);
 		this.setBackground(new Color(255, 255, 255));
 		this.setFont(new Font("Pretendard Variable", Font.BOLD, 24));
@@ -37,15 +38,15 @@ public class SetButton extends JButton {
 
 		
 		// 버튼클릭시 페이지 이동
-		this.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Main_A0 m = new Main_A0();
-				
-				new MANAGER_B2();
-			}
-		});
+//		this.addActionListener(new ActionListener() {
+//
+//			@Override
+//			public void actionPerformed(ActionEvent e) {
+//				Main_A0 m = new Main_A0();
+//				
+//				new MANAGER_B2();
+//			}
+//		});
 
 	}
 }
