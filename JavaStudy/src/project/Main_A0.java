@@ -1,4 +1,4 @@
-package test;
+package project;
 
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -11,6 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+
+import project.common.MenuBar;
 
 public class Main_A0 extends JFrame {
 	final static boolean[] page_number = new boolean[19];
@@ -31,8 +33,7 @@ public class Main_A0 extends JFrame {
 		
 		this.add(jlabel);
 		this.add(jpanel);
-		this.add(new SetImage());
-		this.add(new SetButton("관리자전용", "manager_icon.png", 10, 120));
+		this.add(new MenuBar("관리자 전용", "manager_icon.png", 10, 120));
 		
 		this.setSize(400, 850);
 		this.setLayout(null);

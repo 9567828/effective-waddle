@@ -1,4 +1,4 @@
-package test;
+package project;
 
 import java.awt.Font;
 import java.awt.event.ActionEvent;

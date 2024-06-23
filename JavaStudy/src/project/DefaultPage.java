@@ -1,4 +1,4 @@
-package test;
+package project;
 
 import java.awt.CardLayout;
 
@@ -20,9 +20,9 @@ public class DefaultPage extends JFrame {
 		cardlayout = new CardLayout();
 		pages = new JPanel(cardlayout);
 		
-		pages.add(MANAGER_B3_2.getMan_B3(), "접근기록조회");
-		pages.add(new MANAGER_B2_2(), "계정생성");
-		add(pages);
+//		pages.add(MANAGER_B3_2.getMan_B3(), "접근기록조회");
+//		pages.add(new MANAGER_B2_2(), "계정생성");
+//		add(pages);
 	}
 	
 	public static void main(String[] args) {
