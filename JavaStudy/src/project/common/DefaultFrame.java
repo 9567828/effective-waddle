@@ -19,10 +19,10 @@ public class DefaultFrame {
 		imgLabel.setIcon(icon);
 		
 		
-		JPanel jpanel = new JPanel();
-		
-		jpanel.setBounds(0, 0, 400, 50);
-		jpanel.setBackground(new Color(0, 88, 163));
+//		JPanel jpanel = new JPanel();
+//		
+//		jpanel.setBounds(0, 0, 400, 50);
+//		jpanel.setBackground(new Color(0, 88, 163));
 		
 		window.add(imgLabel);
 		

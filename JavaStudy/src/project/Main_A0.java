@@ -12,6 +12,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import project.common.BottomImage;
 import project.common.MenuBar;
 
 public class Main_A0 extends JFrame {
@@ -34,6 +35,7 @@ public class Main_A0 extends JFrame {
 		this.add(jlabel);
 		this.add(jpanel);
 		this.add(new MenuBar("관리자 전용", "manager_icon.png", 10, 120));
+		this.add(new BottomImage());
 		
 		this.setSize(400, 850);
 		this.setLayout(null);

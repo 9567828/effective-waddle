@@ -1,13 +1,17 @@
 package project.common;
 
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Font;
+import java.awt.Graphics;
+import java.awt.Insets;
 import java.awt.Point;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 
 import javax.swing.JFrame;
 import javax.swing.JTextField;
+import javax.swing.border.Border;
 
 public class CreateTextField {
 	
@@ -41,6 +45,25 @@ public class CreateTextField {
 			}
 		});
 		
+		tf.setBorder(new Border() {
+			private int radius = 10;
+
+			@Override
+			public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+				g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+			}
+
+			@Override
+			public Insets getBorderInsets(Component c) {
+				return new Insets(radius + 1, radius + 1, radius + 2, radius);
+			}
+
+			@Override
+			public boolean isBorderOpaque() {
+				return true;
+			}
+		});
+		
 		return tf;
 	}
 
@@ -65,6 +88,25 @@ public class CreateTextField {
 					h_tf.setForeground(Color.GRAY);
 					h_tf.setText(label);
 				}
+			}
+		});
+		
+		h_tf.setBorder(new Border() {
+			private int radius = 10;
+
+			@Override
+			public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
+				g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
+			}
+
+			@Override
+			public Insets getBorderInsets(Component c) {
+				return new Insets(radius + 1, radius + 1, radius + 2, radius);
+			}
+
+			@Override
+			public boolean isBorderOpaque() {
+				return true;
 			}
 		});
 		

@@ -8,6 +8,7 @@ import java.awt.Point;
 import javax.swing.JButton;
 
 public class SmallCheckButton extends JButton{
+	
 	public SmallCheckButton(String name, Point location) {
 		super(name);
 		
@@ -15,7 +16,7 @@ public class SmallCheckButton extends JButton{
 		setBackground(new Color(16, 118, 200));
 		setSize(80, 40);
 		setLocation(location);
-		setFont(new Font("Pretendard Variable Regular", Font.BOLD, 20));
+		setFont(new Font("넥슨Lv1고딕 굵게", Font.BOLD, 20));
 		
 	}
 }

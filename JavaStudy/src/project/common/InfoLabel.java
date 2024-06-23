@@ -1,6 +1,7 @@
 package project.common;
 
 import java.awt.Color;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 
@@ -12,8 +13,9 @@ public class InfoLabel extends JLabel {
 	 * */
 	public InfoLabel(String title, int x, int y) {
 		this.setText(title);
-		this.setBounds(20, 59, 169, 22);
+		this.setBounds(x, y, 359, 19);
 		this.setForeground(new Color(144, 144, 144));
+		this.setFont(new Font("넥슨Lv1고딕 굵게", Font.BOLD, 18));
 	}
 
 }

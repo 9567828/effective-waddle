@@ -3,14 +3,14 @@ package project;
 import java.awt.Point;
 
 import javax.swing.JFrame;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 import database.DBConnector;
-import project.common.AddTable;
+import project.common.BackButton;
 import project.common.BlueLongButton;
 import project.common.CreateTextField;
 import project.common.DefaultFrame;
+import project.common.HomeButton;
 import project.common.InfoLabel;
 import project.common.TopLabel;
 import project.common.TopPanel;
@@ -22,20 +22,20 @@ public class MANAGER_B3_2 extends JFrame {
 	static boolean isAccessLog = false;
 	JFrame j = DefaultFrame.getDefaultFrame();
 	CreateTextField text = new CreateTextField();
+	TopPanel pan = new TopPanel();
 	
 	public MANAGER_B3_2() {
 		
-		JTable jt = new JTable();
-		AddTable sp = new AddTable(jt);
-		
-		
+		j.add(new HomeButton());
+		j.add(new BackButton());
 		j.add(new TopLabel("접근기록조회"));
-		j.add(new TopPanel());
-		j.add(new InfoLabel("SEARCH CONDITIONS", 16, 90));
+		j.add(pan);
+		j.add(new InfoLabel("SEARCH CONDITIONS", 20, 59));
 		j.add(text.textField(new Point(16, 90), "날짜"));
 		j.add(text.textField(new Point(16, 153), "계정ID"));
 		j.add(new BlueLongButton("검색", 16, 220));
-		j.add(new InfoLabel("SEARCH DATA", 15, 259));
+		j.add(new InfoLabel("SEARCH DATA", 15, 265));
+//		j.add(new BottomImage());
 	}
 	
 //	private static void inputDate() {
@@ -71,7 +71,12 @@ public class MANAGER_B3_2 extends JFrame {
 //	}
 	
 	public static void main(String[] args) {
-		new MANAGER_B3_2();
-	}
-
+		
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+        		new MANAGER_B3_2();
+            }
+        });
+    }
 }
