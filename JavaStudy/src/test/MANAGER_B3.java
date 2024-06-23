@@ -153,12 +153,7 @@ public class MANAGER_B3 extends JFrame {
 					acc_id = rs.getString("account_id");
 					acc_date = rs.getString("acc_date");
 					System.out.println(acc_num + " " + acc_id + " " + acc_date);
-					
-//					for (int i = 0; i < data.length; ++i) {
-//						for (int j = 0; j < data[i].length; ++i) {
-//							jt.setValueAt(acc_num, 0, j);
-//						}
-//					}
+
 					isAccessLog = true;
 				}
 			}
