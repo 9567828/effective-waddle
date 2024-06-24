@@ -14,7 +14,7 @@ import javax.swing.table.TableColumn;
 
 public class AddTable {
 
-	public static JScrollPane getTable() {
+	public static JScrollPane getTable(int x, int y) {
 
 		// 열 이름 설정
 		String[] columnNames = { "ID", "재고명", "수량", "원가", "판매가", "무게", "납품업체" };
@@ -43,7 +43,7 @@ public class AddTable {
 		
 		// 각종 설정
 		// 크기, 글꼴 설정
-		scp.setBounds(10, 250, 365, 543);
+		scp.setBounds(x, y, 365, 543);
 		scp.setFont(new Font("넥슨Lv1고딕", Font.PLAIN, 14));
 		
 		// 컬럼 네임 행 글씨 가운데 정렬

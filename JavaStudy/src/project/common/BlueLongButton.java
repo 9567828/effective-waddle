@@ -12,7 +12,7 @@ public class BlueLongButton extends JButton {
 	public BlueLongButton(String label, int x, int y) {
 		super(label, null);
 		
-		setFont(new Font("나눔글꼴", Font.PLAIN, 14));
+		setFont(new Font("넥슨Lv1고딕 굵게", Font.BOLD, 20));
 		setForeground(Color.decode("#FFDB00"));
 		
 		setBackground(Color.decode("#1076C8"));
