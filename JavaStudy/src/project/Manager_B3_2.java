@@ -1,16 +1,19 @@
 package project;
 
+import java.awt.Event;
 import java.awt.Point;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JScrollPane;
 import javax.swing.SwingUtilities;
 
 import database.DBConnector;
-import project.common.AddTable;
-import project.common.AddTable2;
+import project.common.AddTable3;
 import project.common.BackButton;
 import project.common.BlueLongButton;
-import project.common.BottomImage;
 import project.common.CreateTextField;
 import project.common.DefaultFrame;
 import project.common.HomeButton;
@@ -27,8 +30,10 @@ public class Manager_B3_2 extends JFrame {
 	CreateTextField text = new CreateTextField();
 	TopPanel pan = new TopPanel();
 	
+	String[] columnNames = { "계정ID", "아이디", "접속 날짜" };
+	Object[] data;
+	
 	public Manager_B3_2() {
-		
 		j.add(new HomeButton());
 		j.add(new BackButton());
 		j.add(new TopLabel("접근기록조회"));
@@ -36,9 +41,28 @@ public class Manager_B3_2 extends JFrame {
 		j.add(new InfoLabel("SEARCH CONDITIONS", 20, 59));
 		j.add(text.textField(new Point(12, 90), "날짜"));
 		j.add(text.textField(new Point(12, 153), "계정ID"));
-		j.add(new BlueLongButton("검색", 12, 220));
+		
+		JButton btn = (JButton) j.add(new BlueLongButton("검색", 12, 220)); 
+		
+		// 검색 버튼 기능
+		btn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				
+			}
+		});
+		
 		j.add(new InfoLabel("SEARCH DATA", 12, 259));
-		j.add(AddTable2.getTable(12, 278));
+		JScrollPane table = (JScrollPane) j.add(AddTable3.getTable(
+				12, 278, 370, 540, columnNames));
+		
+		data[0] = "1";
+		data[1] = "마스터";
+		data[2] = "언제지";
+		AddTable3.model.addRow(data);
+		
+		
 	}
 	
 //	private static void inputDate() {

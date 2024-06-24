@@ -8,6 +8,7 @@ import javax.swing.JLabel;
 public class InfoLabel extends JLabel {
 	
 	/**
+	 * 회색 글씨 라벨
 	 * 1. 제목
 	 * 2. x, y 위치값
 	 * */
