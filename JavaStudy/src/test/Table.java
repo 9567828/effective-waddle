@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
@@ -73,7 +75,8 @@ public class Table extends JFrame {
 //	}
 	static String acc_num, acc_id, acc_date;
 
-	public static void getAccessDate(String startDate, String endDate) {
+	public static List<String[]> getAccessDate(String startDate, String endDate) {
+		List<String[]> data = new ArrayList<>();
 		String sql = "SELECT * FROM accessRecord "
 				+ "WHERE acc_date >= ? AND acc_date <= ? ORDER BY acc_date";
 		
@@ -92,11 +95,14 @@ public class Table extends JFrame {
 					acc_id = rs.getString("account_id");
 					acc_date = rs.getString("acc_date");
 					
-					for (int i = 0; i < data.length; ++i) {
-						for (int j = 0; j < data[i].length; ++j) {
-							jt.setValueAt(acc_num, 0, i);
-						}
-					}
+	    			int columnCount = rs.getMetaData().getColumnCount();
+					
+    				String[] row = new String[columnCount];
+    				for (int i = 1; i <= columnCount; i++) {
+    					row[i - 1] = rs.getString(i);
+    				}
+    				data.add(row);
+					
 					
 					System.out.println(acc_num + " " + acc_id + " " + acc_date);
 				}
@@ -104,6 +110,7 @@ public class Table extends JFrame {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		return data;
 		
 	}
 
