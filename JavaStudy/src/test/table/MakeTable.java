@@ -14,7 +14,7 @@ public class MakeTable extends JScrollPane {
 	
 	public MakeTable(int x, int y, int w, int h, String[] columnNames) {
 		DatabaseHelper dbHelper = new DatabaseHelper();
-		List<Object[]> data = dbHelper.getData("2024-01-01", "2024-05-01");
+		List<Object[]> data = dbHelper.getData("2024-01-01", "2024-05-01", "account_1");
 	    
         CustomTableModel model = new CustomTableModel(data, columnNames);
         JTable table = new JTable(model);

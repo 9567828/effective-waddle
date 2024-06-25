@@ -9,7 +9,7 @@ public class TableFromDatabase extends JFrame {
 	
     public TableFromDatabase() {
         DatabaseHelper dbHelper = new DatabaseHelper();
-        List<Object[]> data = dbHelper.getData("2024-01-01", "2024-01-10");
+        List<Object[]> data = dbHelper.getData("2024-01-01", "2024-01-10", "account_1");
         
         // Column names (맞게 수정하세요)
         String[] columnNames = {"Column1", "Column2", "Column3"}; 

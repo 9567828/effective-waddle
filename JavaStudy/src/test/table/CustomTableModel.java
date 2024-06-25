@@ -12,7 +12,6 @@ public class CustomTableModel extends AbstractTableModel {
         this.columnNames = columnNames;
     }
 
-
 	@Override
     public int getRowCount() {
         return data.size();

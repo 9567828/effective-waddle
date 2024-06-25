@@ -2,45 +2,23 @@ package project.common;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.util.List;
 
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
-import test.table.CustomTableModel;
-
-public class AddTable3 {
+public class AddTable3 extends JScrollPane {
 	public static JTable table;
-	public static CustomTableModel model;
-	
-    public static List<Object[]> data;
+	public static DefaultTableModel model;
 
-	// columnNames : 열 이름 (맨 윗줄 행)
-	public static JScrollPane getTable(
-			int locationX, int locationY, 
+	public AddTable3(int locationX, int locationY, 
 			int width, int height, String[] columnNames) {
 
-		// 열 이름이 적힌 행 한줄만 있는 모델 생성
-		model = new CustomTableModel(data, columnNames);
-
-		// 테이블 생성
-		table = new JTable(model);
-
-		// 테스트용 3줄
-//		model.addRow(new Object[] { "1", "상품1", "10", "10000", "15000", "1.2", "업체A" });
-//		model.addRow(new Object[] { "2", "상품2", "20", "8000", "12000", "0.8", "업체B" });
-//		model.addRow(new Object[] { "3", "상품3", "15", "12000", "18000", "1.5", "업체C" });
-
-		// 스크롤 패널 생성
-		JScrollPane scp = new JScrollPane(table);
-
-		// 각종 설정
-		// 크기, 글꼴 설정
-		scp.setBounds(locationX, locationY, width, height);
-		scp.setFont(new Font("나눔글꼴", Font.PLAIN, 14));
+		this.setBounds(locationX, locationY, width, height);
+		this.setFont(new Font("나눔글꼴", Font.PLAIN, 14));
 
 		// columnNames 행 글씨 가운데 정렬
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
@@ -65,9 +43,8 @@ public class AddTable3 {
 //		scp.setBackground(new Color(255, 255, 255));
 
 		// 가로 스크롤바 추가
-		scp.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-
-		return scp;
+		this.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+		
+		this.setViewportView(table);
 	}
-
 }

@@ -13,9 +13,10 @@ public class DatabaseHelper {
 	static DBConnector connecter = new DBConnector("HR", "1234");
 	
 	String sql = "SELECT * FROM accessRecord "
-			+ "WHERE acc_date >= ? AND acc_date <= ? ORDER BY acc_date";
+			+ "WHERE acc_date >= ? AND acc_date <= ? "
+			+ "AND account_id LIKE ? ORDER BY acc_date";
 	
-    public List<Object[]> getData(String startDate, String endDate) {
+    public List<Object[]> getData(String startDate, String endDate, String account) {
         List<Object[]> data = new ArrayList<>();
         
         try (
@@ -24,6 +25,7 @@ public class DatabaseHelper {
         ) {
     		pstmt.setString(1, startDate);
     		pstmt.setString(2, endDate);
+    		pstmt.setString(3, account);
     		
     		try (
     			ResultSet rs = pstmt.executeQuery();

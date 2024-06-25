@@ -22,9 +22,9 @@ public class TableMain {
 		// 표 위치, 사이즈 설정
 		int locationX = 15, locationY = 268, width = 370, height = 543;
 		
-		JScrollPane table = new AddTable3().getTable(
-				locationX, locationY, width, height, columnNames);
+//		JScrollPane table = new AddTable3().getTable(
+//				locationX, locationY, width, height, columnNames);
 		
-		frame.add(table);
+//		frame.add(table);
 	}
 }

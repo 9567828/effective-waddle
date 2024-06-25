@@ -5,6 +5,8 @@ import java.awt.Component;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,6 +20,7 @@ import javax.swing.JLabel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 import database.DBConnector;
 
@@ -38,11 +41,12 @@ public class MANAGER_B3 extends JFrame {
 	boolean isAccessLog = false;
 	
 	JTextField sdateInput, edateInput;
+	DefaultTableModel model;
 	String acc_num, acc_id, acc_date;
 	JTable jt;
 	
 	String[] column = {"계정SEQ", "아이디", "접속일"};
-	String[][] data = new String[9][3];
+//	String[][] data = new String[9][3];
 	
 	public MANAGER_B3(String title) {
 		super(title);
@@ -96,28 +100,19 @@ public class MANAGER_B3 extends JFrame {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				String startDate = sdateInput.getText();
+				String endDate = edateInput.getText();
 				
-				inputDate();
+				inputDate(startDate, endDate);
 				
 				if (!isAccessLog) {
 					System.out.println("조회데이터 없음");
-				} else {
-					for (int i = 0; i < data.length; ++i) {
-						for (int j = 0; j < data[i].length; ++i) {
-							jt.setValueAt(acc_num, 0, j);
-						}
-					}
 				}
-				
-//		        table.setValueAt("200", 1, 1);
-//		        table.setValueAt("50", 0, 1);
-//		        table1.setValueAt("하이", 0, 0);
-//		        table1.setRowHeight(20);
-				
 			}
 		});
-				
-		jt = new JTable(data, column);
+		
+		model = new DefaultTableModel(column, 0);
+		jt = new JTable(model);
 
 		JScrollPane sp = new JScrollPane(jt);
 		sp.setBounds(18, 250, 350, 300);
@@ -131,9 +126,7 @@ public class MANAGER_B3 extends JFrame {
 		this.setVisible(isShow);
 	}
 	
-	private void inputDate() {
-		String startDate = sdateInput.getText();
-		String endDate = edateInput.getText();
+	private void inputDate(String startDate, String endDate) {
 		
 		String sql = "SELECT * FROM accessRecord "
 				+ "WHERE acc_date >= ? AND acc_date <= ? ORDER BY acc_date";
@@ -153,7 +146,8 @@ public class MANAGER_B3 extends JFrame {
 					acc_id = rs.getString("account_id");
 					acc_date = rs.getString("acc_date");
 					System.out.println(acc_num + " " + acc_id + " " + acc_date);
-
+					String[] row = {acc_num, acc_id, acc_date};
+					model.addRow(row);
 					isAccessLog = true;
 				}
 			}

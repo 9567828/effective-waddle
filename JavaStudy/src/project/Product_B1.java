@@ -31,7 +31,7 @@ public class Product_B1 extends JPanel {
 		j.add(text.textField(new Point(12, 81), "상품명"));
 		j.add(new BlueLongButton("검색", 14, 159));
 		j.add(new InfoLabel("SEARCH DATA", 15, 249));
-		j.add(AddTable.getTable(15, 268));
+//		j.add(AddTable.getTable(15, 268));
 	}
 	
 	public static void main(String[] args) {
