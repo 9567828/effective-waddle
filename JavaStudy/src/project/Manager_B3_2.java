@@ -92,13 +92,13 @@ public class Manager_B3_2 extends JFrame {
 		
 //		DefaultTableModel model = new DefaultTableModel(columnNames, 0);
 //		JTable table = new JTable(model);
-
-        sp = new AddTable3(12, 278, 370, 540, columnNames);
-        j.add(sp);
-        
-        model = AddTable3.model;
-        table = AddTable3.table;
 		
+		Object[] tableComponents = 
+				AddTable3.getTableComponents(12, 278, 370, 540, columnNames, "accessRecord");
+		sp = (JScrollPane) tableComponents[0];
+		model = (DefaultTableModel) tableComponents[1];
+		table = (JTable) tableComponents[2];
+		j.add(sp);
 	}
 	
 	private static void inputDate(String startDate, String endDate, String account) {
@@ -120,13 +120,14 @@ public class Manager_B3_2 extends JFrame {
 			try (
 				ResultSet rs = pstmt.executeQuery();
 			) {
+    			int columnCount = rs.getMetaData().getColumnCount();
+    			
     			while (rs.next()) {
-					acc_num = rs.getString("acc_number");
-					acc_id = rs.getString("account_id");
-					acc_date = rs.getString("acc_date");
-					System.out.println(acc_num + " " + acc_id + " " + acc_date);
-					model.addRow(new String[] {acc_num, acc_id, acc_date});
-					isAccessLog = true;
+    				String[] row = new String[columnCount];
+    				for (int i = 1; i <= columnCount; i++) {
+    					row[i - 1] = rs.getString(i);
+    				}
+    				model.addRow(row);
     			}
 			}
 		} catch (SQLException e) {
