@@ -1,10 +1,12 @@
 package project;
 
+import java.awt.Color;
 import java.awt.Font;
 
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.SwingUtilities;
+import javax.swing.border.LineBorder;
 
 public class Label extends JFrame {
 	
@@ -20,6 +22,7 @@ public class Label extends JFrame {
 		jl.setBounds(30, 30, 67, 24);
 		jl.setText("아이디");
 		jl.setFont(new Font("맑은 고딕", Font.PLAIN, 18));
+		
 		
 		
 		this.add(jl);
