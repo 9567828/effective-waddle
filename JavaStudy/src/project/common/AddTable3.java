@@ -28,9 +28,12 @@ public class AddTable3 {
         public static int getRowCount(String tableName) {
             String sql = "SELECT COUNT(*) FROM " + tableName;
             int result = 0;
-            try (Connection conn = connector.getConnection();
-                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                 ResultSet rs = pstmt.executeQuery()) {
+            
+            try (
+        		Connection conn = connector.getConnection();
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                ResultSet rs = pstmt.executeQuery()
+            ) {
                 if (rs.next()) {
                     result = rs.getInt(1);
                 }
