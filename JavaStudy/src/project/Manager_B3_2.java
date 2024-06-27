@@ -8,13 +8,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -30,8 +29,6 @@ import project.common.HomeButton;
 import project.common.InfoLabel;
 import project.common.TopLabel;
 import project.common.TopPanel;
-import test.table.DatabaseHelper;
-import test.table.TableFromDatabase2;
 
 public class Manager_B3_2 extends JFrame {
 	static DBConnector connecter = new DBConnector("HR", "1234");
@@ -72,7 +69,7 @@ public class Manager_B3_2 extends JFrame {
 		// 검색 버튼 기능
 		btn.addActionListener(new ActionListener() {
 			
-			@Override
+			@Override	
 			public void actionPerformed(ActionEvent e) {
 				startDate = startDateInput.getText();
 				endDate = endDateInput.getText();
@@ -125,9 +122,10 @@ public class Manager_B3_2 extends JFrame {
     			while (rs.next()) {
     				String[] row = new String[columnCount];
     				for (int i = 1; i <= columnCount; i++) {
-    					row[i - 1] = rs.getString(i);
+						row[i - 1] = rs.getString(i);
     				}
     				model.addRow(row);
+    				isAccessLog = true;
     			}
 			}
 		} catch (SQLException e) {
